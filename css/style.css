@@ -1,3 +1,7 @@
+@import url(global.css);
+@import url(fonts.css);
+@import url(normalize.css);
+
 
 h2,
 h3 {
