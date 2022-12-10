@@ -716,6 +716,7 @@ input[type="search"]::-webkit-search-results-decoration {
     border: 1px solid #ebebeb;
     border-radius: 3px;
     background-color: #fff;
+    transition: 500ms ease-in-out;
 }
 
 .portfolio__menu-item:not(:last-child) {
