@@ -1,1 +1,1 @@
-# My-first-project__Waxom-
+# My-first-project__Waxom
