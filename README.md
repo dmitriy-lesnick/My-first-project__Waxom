@@ -1,7 +1,7 @@
 # My-first-project__Waxom-HomePage
 
-html,
-css,
-javascript.
+Это мой первый проект в котором я использовал: html, css, javascript.
+Страница адаптивна под все популярные устройства.
+
 
 
