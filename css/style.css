@@ -1,6 +1,7 @@
-@import '_fonts.css';
-@import '_global.css';
-@import '_normalize.css';
+@import url(_fonts.css);
+@import url(_global.css);
+@import url(_normalize.css);
+
 
 h2,
 h3 {
