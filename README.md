@@ -13,8 +13,8 @@ I study frontend development in various courses and platforms of the Internet.
 
 Ready for great projects with wonderful people.
 
-Waxom-HomePage dmitriy-lesnick.github.io/My-first-project_
+Waxom-HomePage https://dmitriy-lesnick.github.io/My-first-project_
 
-Portfolio dmitriy-lesnick.github.io/Portfolio/ Мокринский Дмитрий Сергеевич. Дмитрий Лесник. Фронтенд разработчик
+Portfolio https://dmitriy-lesnick.github.io/Portfolio/ Мокринский Дмитрий Сергеевич. Дмитрий Лесник. Фронтенд разработчик
 
 
