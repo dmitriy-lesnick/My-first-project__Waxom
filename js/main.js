@@ -1,212 +1,228 @@
 const header = document.querySelector('.header')
+const navList = document.querySelector('.header__list')
+const navElemsTarget = document.querySelectorAll('[data-elem= "elem-target"]')
+const navLinks = [...document.querySelectorAll('.header__link')]
+let scrollTimeout
 
-window.addEventListener('scroll', scrollHeader)
+
+navList.addEventListener('click', (e) => {
+    e.preventDefault()
+    if (!e.target.classList.contains('header__link')) {
+        return
+    } else {
+        let elemTarget = document.querySelector(`${e.target.hash}`)
+        adaptiveScroll(elemTarget)
+        toggleActiveNavBar()
+    }
+})
 
 
-function scrollHeader() {
-    if (window.pageYOffset > 50) {
+function adaptiveScroll(elem) {
+    let coord = elem.getBoundingClientRect().top - header.clientHeight
+    scrollByY(coord)
+}
+
+
+window.addEventListener('scroll', () => {
+    if (scrollY > 50) {
         header.classList.add('header_active')
     }
     else {
         header.classList.remove('header_active')
     }
-}
 
-let allSliders = document.querySelectorAll('.hero__slide')
-let allPagination = document.querySelectorAll('.pagination__dot')
+    clearTimeout(scrollTimeout)
 
-let current = 0
+    scrollTimeout = setTimeout(() => {
+        setActiveNavLink()
+    }, 100);
 
-document.querySelector('.arrow-right').addEventListener('click', movRight)
-document.querySelector('.arrow-left').addEventListener('click', movLeft)
-
-function movRight() {
-    for (let i = 0; i < allSliders.length; i++) {
-        allSliders[i].classList.add('slider-opacity')
-    }
-
-    if (current == allSliders.length) {
-        current = 0
-        allSliders[current].classList.remove('slider-opacity')
-    }
-    else {
-        movPaginationRight()
-        allSliders[current].classList.remove('slider-opacity')
-    }
-
-}
-
-function movLeft() {
-    for (let i = 0; i < allSliders.length; i++) {
-        allSliders[i].classList.add('slider-opacity')
-    }
-
-    if (current == -1) {
-        current = allSliders.length - 1
-        allSliders[current].classList.remove('slider-opacity')
-    }
-    else {
-        movPaginationLeft()
-        allSliders[current].classList.remove('slider-opacity')
-    }
-}
-
-function movPaginationRight() {
-    for (let i = 0; i < allPagination.length; i++) {
-        allPagination[i].classList.remove('pagination__dot_focus')
-    }
-    if (current + 1 == allPagination.length) {
-        current = 0
-        allPagination[current].classList.add('pagination__dot_focus')
-    } else {
-        current = current + 1
-        allPagination[current].classList.add('pagination__dot_focus')
-    }
-}
-
-function movPaginationLeft() {
-    for (let i = 0; i < allPagination.length; i++) {
-        allPagination[i].classList.remove('pagination__dot_focus')
-    }
-    if (current - 1 == -1) {
-        current = allPagination.length - 1
-        allPagination[current].classList.add('pagination__dot_focus')
-    } else {
-        current = current - 1
-        allPagination[current].classList.add('pagination__dot_focus')
-    }
-}
-
-const slidePagination = document.querySelector('.hero__pagination')
-slidePagination.addEventListener('click', selectDot)
-
-function selectDot(event) {
-    if (event.target.className !== 'pagination__dot') {
-        return
-    } if (event.target.dataset.item == 'first-dot' && allPagination[0].classList != 'pagination__dot pagination__dot_focus') {
-        current = 0
-        changeDotClick(current)
-    } if (event.target.dataset.item == 'second-dot' && allPagination[1].classList != 'pagination__dot pagination__dot_focus') {
-        current = 0
-        current = + 1
-        changeDotClick(current)
-    } if (event.target.dataset.item == 'third-dot' && allPagination[2].classList != 'pagination__dot pagination__dot_focus') {
-        current = 0
-        current = + 2
-        changeDotClick(current)
-    } if (event.target.dataset.item == 'fourth-dot' && allPagination[3].classList != 'pagination__dot pagination__dot_focus') {
-        current = 0
-        current = + 3
-        changeDotClick(current)
-    }
-}
-
-function changeDotClick(current) {
-    for (let i = 0; i < allPagination.length; i++) {
-        allPagination[i].classList.remove('pagination__dot_focus')
-        allSliders[i].classList.add('slider-opacity')
-    } allPagination[current].classList.add('pagination__dot_focus')
-    allSliders[current].classList.remove('slider-opacity')
-}
+})
 
 
 document.querySelectorAll('.logo-link').forEach(el => {
-    el.addEventListener('click', function (event) {
-        event.preventDefault()
-        window.scrollBy({
-            top: document.querySelector('#home').getBoundingClientRect().top,
-            behavior: "smooth"
-        })
+    el.addEventListener('click', function (e) {
+        e.preventDefault()
+        scrollByY(-scrollY)
     })
 
 })
 
-const navLinks = document.querySelectorAll('.header__link')
 
-navLinks.forEach(link => link.addEventListener('click', function (event) {
-    event.preventDefault()
-    const href = this.getAttribute('href').substring(1)
-    scrollByTarget(href)
-    if (!document.querySelector('.header__nav-active')) {
-        return
-    }
-    if (document.querySelector('.header__nav-active')) {
-        navBar.classList.remove('header__nav-active')
-        navBar.classList.add('header__nav-close')
-        setTimeout(() => navBar.classList.remove('header__nav-close'), 500)
-    }
-    for (i = 0; i < menuBurgerLines.length; i++) {
-        menuBurgerLines[i].classList.remove('header__nav-close-line')
-    }
-}))
-
-const searchForm = document.querySelectorAll('.header__search')
-
-const searchInput = document.querySelector('.search__input')
-
-searchForm.forEach(el => {
-    el.addEventListener('submit', findElement)
-    el.firstElementChild.addEventListener('click', () => {
-        el.firstElementChild.classList.remove('search_blur')
-        el.firstElementChild.classList.add('search_focus')
-    })
-    el.firstElementChild.addEventListener('blur', () => {
-        el.firstElementChild.classList.remove('search_focus')
-        el.firstElementChild.classList.add('search_blur')
-        el.firstElementChild.value = ""
-    })
-})
-
-function findElement(event) {
-    event.preventDefault()
-    let enteredWord = this.firstElementChild.value
-    if (document.getElementById(enteredWord)) {
-        scrollByTarget(enteredWord)
-        this.firstElementChild.value = ""
-        return
-    } {
-        this.firstElementChild.value = "not found"
-    }
-}
-
-function scrollByTarget(id) {
-    const headerElHeight = document.querySelector('.header').clientHeight;
-
-    const scrollTarget = document.getElementById(id)
-
-    const elementPosition = scrollTarget.getBoundingClientRect().top - headerElHeight
-
+function scrollByY(coord) {
     window.scrollBy({
-        top: elementPosition,
+        top: coord,
         behavior: "smooth"
     })
 }
 
+
+
+
+function setActiveNavLink() {
+    navLinks.forEach(e => e.classList.remove('link--active'))
+    if ((innerHeight + scrollY >= document.documentElement.scrollHeight - 15)) {
+        navLinks[navLinks.length - 1].classList.add('link--active')
+        return
+    } else if (scrollY >= 0 && scrollY < navElemsTarget[0].clientHeight) {
+        navLinks[0].classList.add('link--active')
+        return
+    } else {
+        for (let i = navElemsTarget.length - 2; i > 0; i--) {
+            if (scrollY > navElemsTarget[i].getBoundingClientRect().top + scrollY - header.clientHeight - 2) {
+                let targetLink = document.querySelector(`[href="#${navElemsTarget[i].id}"]`)
+                targetLink.classList.add('link--active')
+                break
+            }
+        }
+    }
+}
+
+
+
+
+//------------------------HeroSlider-start--------------------------------------
+
+class HeroSlider {
+    constructor() {
+        this.slides = [...document.querySelectorAll('.visual-slider__slide')]
+        this.paginationWrp = document.querySelector('.visual-slider__pagination')
+        this.paginations = [...document.querySelectorAll('.pagination__dot')]
+        this.current = 0
+        this.btnPrev = document.querySelector('.visual-slider__button_left')
+        this.btnNext = document.querySelector('.visual-slider__button_right')
+        this.btnPrev.addEventListener('click', () => { this.prev() })
+        this.btnNext.addEventListener('click', () => { this.next() })
+        this.paginationWrp.addEventListener('click', (e) => { this.clickOnPagination(e) })
+    }
+
+    clickOnPagination(e) {
+        if (!e.target.classList.contains('pagination__dot')) {
+            return
+        } else {
+            let currentHide = this.current
+            this.paginations[this.current].classList.remove('dot--active')
+            e.target.classList.add('dot--active')
+            this.current = Number(e.target.dataset.index)
+            let currentShow = this.current
+            this.toggleActiveSlide(currentHide, currentShow)
+        }
+    }
+
+    prev() {
+        let currentHide = this.current
+        this.current = this.current === 0 ? this.current = this.slides.length - 1 : --this.current
+        let currentShow = this.current
+        this.toggleActiveSlide(currentHide, currentShow)
+        this.changeActivePaginaton(currentHide, currentShow)
+    }
+
+    next() {
+        let currentHide = this.current
+        this.current = this.current === this.slides.length - 1 ? this.current = 0 : ++this.current
+        let currentShow = this.current
+        this.toggleActiveSlide(currentHide, currentShow)
+        this.changeActivePaginaton(currentHide, currentShow)
+    }
+
+    toggleActiveSlide(currentHide, currentShow) {
+        let slideHide = this.slides[currentHide]
+        slideHide.classList.remove('slide--active')
+        let slideShow = this.slides[currentShow]
+        slideShow.classList.add('slide--active')
+    }
+
+    changeActivePaginaton(currentHide, currentShow) {
+        this.paginations[currentHide].classList.remove('dot--active')
+        this.paginations[currentShow].classList.add('dot--active')
+    }
+
+}
+
+new HeroSlider()
+
+
+//--------------------------------HeroSlider-end----------------------------------------------
+
+
+//-------------search-start---------------
+
+let searchForm = document.querySelector('.search__form')
+let searchInput = document.querySelector('.search__input')
+
+searchInput.addEventListener('click', () => {
+    toggleOpenSearch(true)
+})
+
+searchInput.addEventListener('focusout', () => {
+    toggleOpenSearch(false)
+})
+
+function toggleOpenSearch(isOpen) {
+    if (isOpen) {
+        searchInput.classList.add('search__input--active')
+        searchForm.classList.add('search__form--active')
+    } else {
+        searchInput.classList.remove('search__input--active')
+        searchForm.classList.remove('search__form--active')
+    }
+}
+
+//-------------search-end---------------
+
+//-------------burger-start------------------
+
 const menuBurger = document.querySelector('.header__burger')
 
-let menuBurgerLines = document.querySelectorAll('.burger__line')
+let menuBurgerLines = menuBurger.querySelectorAll('.burger__line')
+
+let resizeTimeout
 
 const navBar = document.querySelector('.header__nav')
 
-menuBurger.addEventListener('click', openNav)
+menuBurger.addEventListener('click', toggleActiveNavBar)
 
-function openNav() {
-    if (document.querySelector('.header__nav-active')) {
-        navBar.classList.remove('header__nav-active')
-        navBar.classList.add('header__nav-close')
-        setTimeout(() => navBar.classList.remove('header__nav-close'), 500)
-        for (i = 0; i < menuBurgerLines.length; i++) {
-            menuBurgerLines[i].classList.remove('header__nav-close-line')
-        }
+window.addEventListener('load', () => { menuBurgerInit() })
+
+window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout)
+    resizeTimeout = setTimeout(() => {
+        menuBurgerInit()
+    }, 150);
+})
+
+function menuBurgerInit() {
+    if (window.innerWidth <= 765) {
+        menuBurger.classList.add('header__burger--display-block')
+    } else {
+        menuBurger.classList.remove('header__burger--display-block')
+    }
+}
+
+function toggleActiveNavBar() {
+    if (!document.querySelector('.header__burger--display-block')) { return }
+    if (navBar.classList.contains('header__nav-active')) {
+        let animCloseNavBar = navBar.animate([{ transform: 'translate(100%)' }], { duration: 200 })
+        animCloseNavBar.addEventListener('finish', function () {
+            navBar.classList.remove('header__nav-active')
+        })
+        isOpen = false
     } else {
         navBar.classList.add('header__nav-active')
-        navBar.classList.remove('header__nav-close')
-        for (i = 0; i < menuBurgerLines.length; i++) {
+        isOpen = true
+    }
+
+    for (i = 0; i < menuBurgerLines.length; i++) {
+        if (isOpen) {
             menuBurgerLines[i].classList.add('header__nav-close-line')
+        } else {
+            menuBurgerLines[i].classList.remove('header__nav-close-line')
         }
     }
 
 }
+
+//---------------burger-end-----------------------
 
 const demoVideo = document.querySelector('.video__element')
 
@@ -226,75 +242,114 @@ function playVideo() {
     }
 }
 
-document.querySelectorAll('.mobile__item-btn').forEach(el => {
-    el.addEventListener('click', function () {
-        let textElement = this.parentNode.lastElementChild
-        if (this.firstElementChild.classList != 'mobile__item-marker mobile__item-marker-open') {
-            this.firstElementChild.classList.add('mobile__item-marker-open')
-            textElement.classList.add('mobile__item-txt-open')
-            textElement.style.maxHeight = textElement.scrollHeight + 'px'
+
+//------------------mobile-start--------------------------
+
+let mobileDeviceWrp = document.querySelector('.mobile-wrp')
+mobileDeviceWrp.addEventListener('click', (e) => toggleMobileDevItem(e))
+
+function toggleMobileDevItem(e) {
+    if (!e.target.classList.contains('mobile__item-btn')) {
+        return
+    } else {
+        let item = e.target.closest('.mobile__item')
+        let icon = item.querySelector('.mobile__item-marker')
+        let textElem = item.querySelector('.mobile__item-txt')
+
+        if (textElem.classList.contains('mobile__item-txt-open')) {
+            icon.classList.remove('mobile__item-marker-open')
+            textElem.classList.remove('mobile__item-txt-open')
+            textElem.style.maxHeight = null
         } else {
-            textElement.style.maxHeight = null
-            this.firstElementChild.classList.remove('mobile__item-marker-open')
-            textElement.classList.remove('mobile__item-txt-open')
+            icon.classList.add('mobile__item-marker-open')
+            textElem.classList.add('mobile__item-txt-open')
+            textElem.style.maxHeight = textElem.scrollHeight + 'px'
         }
-    })
-})
-
-const sliders = document.querySelectorAll('.recent-slide')
-const sliderLine = document.querySelector('.recente-slider-line')
-
-let count = 0
-let width
-
-adaptationSize()
-
-window, addEventListener('resize', init)
-
-function init() {
-    adaptationSize()
-    rollSlider()
+    }
 }
 
-const recentBtnRight = document.querySelector('.recent__arrow-right')
-const recentBtnleft = document.querySelector('.recent__arrow-left')
+//-------------mobile-end---------
 
-recentBtnRight.addEventListener('click', function () {
-    if (count == 0) {
-        recentBtnleft.classList.remove('recent__arrow-opacity')
-    }
-    count++
-    if (count < sliders.length - 1) {
-        rollSlider()
-    } else {
-        rollSlider()
-        recentBtnRight.classList.add('recent__arrow-opacity')
-    }
-})
 
-recentBtnleft.addEventListener('click', function () {
-    if (count == 2) {
-        recentBtnRight.classList.remove('recent__arrow-opacity')
-    }
-    count--
-    if (count > 0) {
-        rollSlider()
-    } else {
-        rollSlider()
-        recentBtnleft.classList.add('recent__arrow-opacity')
-    }
-})
+//-----------RecentSlider--start-----
 
-function adaptationSize() {
-    width = document.querySelector('.recente-slider').offsetWidth
-    sliderLine.style.width = width * sliders.length + "px"
-    sliders.forEach(item => {
-        item.style.width = width + "px"
-        item.style.height = 'auto'
-    })
+class AdaptiveSlider {
+    constructor() {
+        this.slider = document.querySelector('.recente-slider')
+        this.slides = [...document.querySelectorAll('.recent__item')]
+        this.sliderLine = document.querySelector('.recente-slider-line')
+        this.current = 0
+        this.sliderWidth
+        this.timeout
+        this.buttonNext = document.querySelector('.recent__arrow-right')
+        this.buttonPrev = document.querySelector('.recent__arrow-left')
+        this.numVisibleSlides
+        this.buttonNext.addEventListener('click', () => this.next())
+        this.buttonPrev.addEventListener('click', () => this.prev())
+
+        this.sliderInit()
+
+        window.addEventListener('resize', () => {
+            clearTimeout(this.timeout)
+            this.timeout = setTimeout(() => {
+                this.sliderInit()
+            }, 150);
+        })
+    }
+
+    sliderInit() {
+        this.numVisibleSlides = this.setNumVisibleSlides()
+        this.adaptationSize()
+        this.rollSlider()
+    }
+
+    prev() {
+        if (this.current === 0) { return }
+
+        if (this.current === this.slides.length - this.numVisibleSlides) { this.toggleActiveButton(this.buttonNext, true) }
+
+        if (--this.current === 0) { this.toggleActiveButton(this.buttonPrev, false) }
+
+        this.rollSlider()
+    }
+
+    next() {
+        if (this.current === this.slides.length - this.numVisibleSlides) { return }
+
+        if (this.current === 0) { this.toggleActiveButton(this.buttonPrev, true) }
+
+        if (++this.current === this.slides.length - this.numVisibleSlides) {
+            this.toggleActiveButton(this.buttonNext, false)
+        }
+
+        this.rollSlider()
+    }
+
+    toggleActiveButton(button, isActive) {
+        isActive == true ? button.classList.remove('recent__arrow-opacity') : button.classList.add('recent__arrow-opacity')
+    }
+
+    adaptationSize() {
+        this.sliderWidth = this.slider.clientWidth
+        this.sliderLine.style.width = this.sliderWidth / this.numVisibleSlides * this.slides.length + "px"
+        this.slides.forEach(el => {
+            el.style.width = this.sliderWidth / this.numVisibleSlides + "px"
+            el.style.height = 'auto'
+        })
+    }
+
+    setNumVisibleSlides() {
+        return window.innerWidth < 850 && window.innerWidth >= 650 ? 2 : window.innerWidth < 650 ? 1 : 3
+    }
+
+    rollSlider() {
+        this.sliderLine.style.transform = 'translate(-' + this.current * (this.sliderWidth / this.numVisibleSlides) + 'px)'
+    }
 
 }
 
-function rollSlider() {
-    sliderLine.style.transform = 'translate(-' + count * width + 'px)'
-}
+
+let recentSlider = new AdaptiveSlider()
+
+
+//-----------RecentSlider--end-----
