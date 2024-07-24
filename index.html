@@ -17,17 +17,11 @@
     <meta name="msapplication-config" content="img/favicon/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="/css/_fonts.css">
-    <link rel="stylesheet" href="/css/_global.css">
-    <link rel="stylesheet" href="/css/_normalize.css">
 </head>
 
 <body>
     <header class="header">
         <div class="header-wrp">
-            <form action="#" class="header__search header__search-mobile" method="post">
-                <input class="search__input" type="search">
-            </form>
             <a href="#home" class="header__logo logo logo-link"><svg class="header__logo-icon logo__icon"
                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="80"
                     height="56">
@@ -36,15 +30,15 @@
                 </svg>
                 <span class="logo__txt logo__txt_none hidden">waxom</span>
             </a>
-            <div class="header__burger">
+            <div class="header__burger" data-active="">
                 <span class="burger__line burger__line_first"></span>
                 <span class="burger__line burger__line_second"></span>
                 <span class="burger__line burger__line_third"></span>
             </div>
             <nav class="header__nav">
                 <ul class="header__list">
-                    <li class="header__list-item"><a href="#home" class="header__link ">Home</a></li>
-                    <li class="header__list-item"><a href="#about-us" class="header__link hidden">About Us</a></li>
+                    <li class="header__list-item"><a href="#home" class="header__link link--active">Home</a></li>
+                    <li class="header__list-item"><a href="#about-us" class="header__link">About Us</a></li>
                     <li class="header__list-item"><a href="#projects" class="header__link ">Our Projects</a></li>
                     <li class="header__list-item"><a href="#demo" class="header__link ">Demo</a></li>
                     <li class="header__list-item"><a href="#blog" class="header__link ">Blog</a></li>
@@ -65,54 +59,56 @@
                             </g>
                         </g>
                     </svg></a>
+                <form action="#!" class="search__form"><input class="search__input" type="text">
+                </form>
             </nav>
-            <form action="#" class="header__search search" method="post">
-                <input class="search__input" type="search">
-            </form>
+
+
+
         </div>
     </header>
     <main class="main">
-        <div id="home" class="hero">
-            <div class="hero__wrp">
-                <button class="slider__arrow arrow-left"></button>
-                <div class="hero__slider slider">
-                    <a href="#" class="hero__btn page-button">get started</a>
-                    <div id="first-slide" class="hero__slide">
-                        <h1 class="hero__title">Unique and Modern Design</h1>
-                        <span class="hero__subtitle">Portfolio PSD Template</span>
-                        <p class="hero__txt">Nam liber tempor cum soluta nobis eleifend option congue nihil
+        <div id="home" class="hero" data-elem='elem-target'>
+            <div class="visual-slider">
+                <button type="button" class="visual-slider__button visual-slider__button_left"></button>
+                <div class="visual-slider__innerWrp">
+                    <a href="#!" class="visual-slider__btn page-button">get started</a>
+                    <div class="visual-slider__slide slide--active">
+                        <h1 class="visual-slider__title">Unique and Modern Design</h1>
+                        <span class="visual-slider__subtitle">Portfolio PSD Template</span>
+                        <p class="visual-slider__txt">Nam liber tempor cum soluta nobis eleifend option congue nihil
                             imper&shy;diet
                             doming
                             id quod mazim placerat facer possim assum.</p>
                     </div>
-                    <div id="second-slide" class="hero__slide slider-opacity">
-                        <span class="hero__title">Lorem, ipsum dolor.</span>
-                        <span class="hero__subtitle">Lorem, ipsum dolor.</span>
-                        <p class="hero__txt">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
+                    <div class="visual-slider__slide">
+                        <span class="visual-slider__title">Lorem, ipsum dolor.</span>
+                        <span class="visual-slider__subtitle">Lorem, ipsum dolor.</span>
+                        <p class="visual-slider__txt">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa
                             quae
                             sunt atque cupiditate dolores ullam.
                         </p>
                     </div>
-                    <div id="third-slide" class="hero__slide slider-opacity">
-                        <span class="hero__title">Lorem, ipsum.</span>
-                        <span class="hero__subtitle">Lorem ipsum dolor sit.</span>
-                        <p class="hero__txt">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    <div class="visual-slider__slide">
+                        <span class="visual-slider__title">Lorem, ipsum.</span>
+                        <span class="visual-slider__subtitle">Lorem ipsum dolor sit.</span>
+                        <p class="visual-slider__txt">Lorem ipsum dolor sit amet consectetur adipisicing elit.
                             Reprehenderit, error deserunt? Saepe?</p>
                     </div>
-                    <div id="fourth-slide" class="hero__slide slider-opacity">
-                        <span class="hero__title">Lorem, ipsum.</span>
-                        <span class="hero__subtitle">Lorem ipsum dolor sit</span>
-                        <p class="hero__txt">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    <div class="visual-slider__slide">
+                        <span class="visual-slider__title">Lorem, ipsum.</span>
+                        <span class="visual-slider__subtitle">Lorem ipsum dolor sit</span>
+                        <p class="visual-slider__txt">Lorem ipsum dolor sit amet consectetur adipisicing elit.
                             Reprehenderit.</p>
                     </div>
                 </div>
-                <button class="slider__arrow arrow-right"></button>
+                <button type="button" class="visual-slider__button visual-slider__button_right"></button>
             </div>
-            <div class="hero__pagination pagination">
-                <button data-item="first-dot" class="pagination__dot pagination__dot_focus"></button>
-                <button data-item="second-dot" class="pagination__dot"></button>
-                <button data-item="third-dot" class="pagination__dot"></button>
-                <button data-item="fourth-dot" class="pagination__dot"></button>
+            <div class="visual-slider__pagination pagination">
+                <button data-index="0" class="pagination__dot dot--active"></button>
+                <button data-index="1" class="pagination__dot"></button>
+                <button data-index="2" class="pagination__dot"></button>
+                <button data-index="3" class="pagination__dot"></button>
             </div>
         </div>
         <div class="featers container">
@@ -203,7 +199,7 @@
                     id quod mazim.</p>
             </div>
         </div>
-        <section id="about-us" class="presentation">
+        <section id="about-us" class="presentation" data-elem='elem-target'>
             <figure class="presentation__wrp">
                 <figcaption class="presentation__descript">
                     <h2 class="presentation__descript_title">Waxom is
@@ -231,7 +227,7 @@
                 <a href="#" class="commersial__btn page-button">purchase now</a>
             </div>
         </aside>
-        <section id="projects" class="portfolio container">
+        <section id="projects" class="portfolio container" data-elem="elem-target">
             <div class="portfolio__wrp">
                 <h2 class="portfolio__title">Our Latest Projects.</h2>
                 <p class="portfolio__txt">Investigationes demonstraverunt lectores legere me lius quod ii legunt
@@ -301,7 +297,7 @@
             </div>
             <button class="portfolio__btn-more page-button">load more</button>
         </section>
-        <div id="demo" class="demo">
+        <div id="demo" class="demo" data-elem='elem-target'>
             <div class="demo-wrp">
                 <div class="demo__video video">
                     <video class="video__element" poster="img/video-poster-min.png">
@@ -311,7 +307,6 @@
                             видео</a>
                     </video>
                 </div>
-
             </div>
             <div class="demo__descript">
                 <button class="demo__button"><svg class="demo__button-icon" xmlns="http://www.w3.org/2000/svg"
@@ -336,7 +331,7 @@
                         legere me lius quod ii legunt saepius claritas. Eodem modo typi, qui nunc nobis videntur parum
                         clari, fiant sollemnes in futurum.</p>
                     <div class="mobile__item">
-                        <button class="mobile__item-btn ">
+                        <button class="mobile__item-btn">
                             <span class="mobile__item-marker"></span>Nam liber tempor cum soluta nobis eleifend option;
                         </button>
                         <p class="mobile__item-txt">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
@@ -477,7 +472,7 @@
                 <span class="statistic__txt">We launched</span>
             </div>
         </aside>
-        <section id="blog" class="recent container">
+        <section id="blog" class="recent container" data-elem='elem-target'>
             <div class="recent__descript">
                 <h2 class="recent__title">Recent Posts.</h2>
                 <p class="recent__subtitle">Investigationes demonstraverunt lectores legere me lius quod ii legunt
@@ -485,147 +480,111 @@
             </div>
             <div class="recente-slider">
                 <div class="recente-slider-line">
-                    <div class="recent-slide">
-                        <article class="recent__item">
-                            <img src="img/recent-left-min.png" alt="recent post" class="recent__img">
-                            <div class="recent__data">
-                                <span class="recent__data-day">30</span>
-                                <span class="recent__data-month">Sep.</span>
-                            </div>
-                            <div class="recent__item-wrp">
-                                <h3 class="recent__item-title">Lorem ipsum dolor sit
-                                    amet</h3>
-                                <p class="recent__item-subtitle">Claritas est etiam processus dynamicus, qui sequitur
-                                    mutationem
-                                    consuetudium.</p>
-                                <a href="#!" class="page-link">Read More</a>
-                            </div>
-                        </article>
-                        <article class="recent__item">
-                            <img src="img/recent-center-min.png" alt="recent post" class="recent__img">
-                            <div class="recent__data">
-                                <span class="recent__data-day">30</span>
-                                <span class="recent__data-month">Sep.</span>
-                            </div>
-                            <div class="recent__item-wrp">
-                                <h3 class="recent__item-title">Lorem ipsum dolor sit
-                                    amet</h3>
-                                <p class="recent__item-subtitle">Claritas est etiam processus dynamicus, qui sequitur
-                                    mutationem
-                                    consuetudium.</p>
-                                <a href="#!" class="page-link">Read More</a>
-                            </div>
-                        </article>
-                        <article class="recent__item">
-                            <img src="img/recent-right-min.png" alt="recent post" class="recent__img">
-                            <div class="recent__data">
-                                <span class="recent__data-day">30</span>
-                                <span class="recent__data-month">Sep.</span>
-                            </div>
-                            <div class="recent__item-wrp">
-                                <h3 class="recent__item-title">Lorem ipsum dolor sit
-                                    amet</h3>
-                                <p class="recent__item-subtitle">Claritas est etiam processus dynamicus, qui sequitur
-                                    mutationem
-                                    consuetudium.</p>
-                                <a href="#!" class="page-link">Read More</a>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="recent-slide">
-                        <article class="recent__item">
-                            <img src="img/recent-left-min.png" alt="recent post" class="recent__img">
-                            <div class="recent__data">
-                                <span class="recent__data-day">30</span>
-                                <span class="recent__data-month">Sep.</span>
-                            </div>
-                            <div class="recent__item-wrp">
-                                <h3 class="recent__item-title">Lorem ipsum dolor sit
-                                    amet</h3>
-                                <p class="recent__item-subtitle">Claritas est etiam processus dynamicus, qui sequitur
-                                    mutationem
-                                    consuetudium.</p>
-                                <a href="#!" class="page-link">Read More</a>
-                            </div>
-                        </article>
-                        <article class="recent__item">
-                            <img src="img/recent-center-min.png" alt="recent post" class="recent__img">
-                            <div class="recent__data">
-                                <span class="recent__data-day">30</span>
-                                <span class="recent__data-month">Sep.</span>
-                            </div>
-                            <div class="recent__item-wrp">
-                                <h3 class="recent__item-title">Lorem ipsum dolor sit
-                                    amet</h3>
-                                <p class="recent__item-subtitle">Claritas est etiam processus dynamicus, qui sequitur
-                                    mutationem
-                                    consuetudium.</p>
-                                <a href="#!" class="page-link">Read More</a>
-                            </div>
-                        </article>
-                        <article class="recent__item">
-                            <img src="img/recent-right-min.png" alt="recent post" class="recent__img">
-                            <div class="recent__data">
-                                <span class="recent__data-day">30</span>
-                                <span class="recent__data-month">Sep.</span>
-                            </div>
-                            <div class="recent__item-wrp">
-                                <h3 class="recent__item-title">Lorem ipsum dolor sit
-                                    amet</h3>
-                                <p class="recent__item-subtitle">Claritas est etiam processus dynamicus, qui sequitur
-                                    mutationem
-                                    consuetudium.</p>
-                                <a href="#!" class="page-link">Read More</a>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="recent-slide">
-                        <article class="recent__item">
-                            <img src="img/recent-left-min.png" alt="recent post" class="recent__img">
-                            <div class="recent__data">
-                                <span class="recent__data-day">30</span>
-                                <span class="recent__data-month">Sep.</span>
-                            </div>
-                            <div class="recent__item-wrp">
-                                <h3 class="recent__item-title">Lorem ipsum dolor sit
-                                    amet</h3>
-                                <p class="recent__item-subtitle">Claritas est etiam processus dynamicus, qui sequitur
-                                    mutationem
-                                    consuetudium.</p>
-                                <a href="#!" class="page-link">Read More</a>
-                            </div>
-                        </article>
-                        <article class="recent__item">
-                            <img src="img/recent-center-min.png" alt="recent post" class="recent__img">
-                            <div class="recent__data">
-                                <span class="recent__data-day">30</span>
-                                <span class="recent__data-month">Sep.</span>
-                            </div>
-                            <div class="recent__item-wrp">
-                                <h3 class="recent__item-title">Lorem ipsum dolor sit
-                                    amet</h3>
-                                <p class="recent__item-subtitle">Claritas est etiam processus dynamicus, qui sequitur
-                                    mutationem
-                                    consuetudium.</p>
-                                <a href="#!" class="page-link">Read More</a>
-                            </div>
-                        </article>
-                        <article class="recent__item">
-                            <img src="img/recent-right-min.png" alt="recent post" class="recent__img">
-                            <div class="recent__data">
-                                <span class="recent__data-day">30</span>
-                                <span class="recent__data-month">Sep.</span>
-                            </div>
-                            <div class="recent__item-wrp">
-                                <h3 class="recent__item-title">Lorem ipsum dolor sit
-                                    amet</h3>
-                                <p class="recent__item-subtitle">Claritas est etiam processus dynamicus, qui sequitur
-                                    mutationem
-                                    consuetudium.</p>
-                                <a href="#!" class="page-link">Read More</a>
-                            </div>
-                        </article>
-                    </div>
+                    <article class="recent__item">
+                        <img src="img/recent-center-min.png" alt="recent post" class="recent__img">
+                        <div class="recent__data">
+                            <span class="recent__data-day">30</span>
+                            <span class="recent__data-month">Sep.</span>
+                        </div>
+                        <div class="recent__item-wrp">
+                            <h3 class="recent__item-title">First Lorem ipsum dolor sit
+                                amet</h3>
+                            <p class="recent__item-subtitle">Claritas est etiam processus dynamicus, qui sequitur
+                                mutationem
+                                consuetudium.</p>
+                            <a href="#!" class="page-link">Read More</a>
+                        </div>
+                    </article>
+                    <article class="recent__item">
+                        <img src="img/recent-left-min.png" alt="recent post" class="recent__img">
+                        <div class="recent__data">
+                            <span class="recent__data-day">30</span>
+                            <span class="recent__data-month">Sep.</span>
+                        </div>
+                        <div class="recent__item-wrp">
+                            <h3 class="recent__item-title">Lorem ipsum dolor sit
+                                amet</h3>
+                            <p class="recent__item-subtitle">Claritas est etiam processus dynamicus, qui sequitur
+                                mutationem
+                                consuetudium.</p>
+                            <a href="#!" class="page-link">Read More</a>
+                        </div>
+                    </article>
+                    <article class="recent__item">
+                        <img src="img/recent-center-min.png" alt="recent post" class="recent__img">
+                        <div class="recent__data">
+                            <span class="recent__data-day">30</span>
+                            <span class="recent__data-month">Sep.</span>
+                        </div>
+                        <div class="recent__item-wrp">
+                            <h3 class="recent__item-title">Lorem ipsum dolor sit
+                                amet</h3>
+                            <p class="recent__item-subtitle">Claritas est etiam processus dynamicus, qui sequitur
+                                mutationem
+                                consuetudium.</p>
+                            <a href="#!" class="page-link">Read More</a>
+                        </div>
+                    </article>
+                    <article class="recent__item">
+                        <img src="img/recent-right-min.png" alt="recent post" class="recent__img">
+                        <div class="recent__data">
+                            <span class="recent__data-day">30</span>
+                            <span class="recent__data-month">Sep.</span>
+                        </div>
+                        <div class="recent__item-wrp">
+                            <h3 class="recent__item-title">Lorem ipsum dolor sit
+                                amet</h3>
+                            <p class="recent__item-subtitle">Claritas est etiam processus dynamicus, qui sequitur
+                                mutationem
+                                consuetudium.</p>
+                            <a href="#!" class="page-link">Read More</a>
+                        </div>
+                    </article>
+                    <article class="recent__item">
+                        <img src="img/recent-left-min.png" alt="recent post" class="recent__img">
+                        <div class="recent__data">
+                            <span class="recent__data-day">30</span>
+                            <span class="recent__data-month">Sep.</span>
+                        </div>
+                        <div class="recent__item-wrp">
+                            <h3 class="recent__item-title">Lorem ipsum dolor sit
+                                amet</h3>
+                            <p class="recent__item-subtitle">Claritas est etiam processus dynamicus, qui sequitur
+                                mutationem
+                                consuetudium.</p>
+                            <a href="#!" class="page-link">Read More</a>
+                        </div>
+                    </article>
+                    <article class="recent__item">
+                        <img src="img/recent-center-min.png" alt="recent post" class="recent__img">
+                        <div class="recent__data">
+                            <span class="recent__data-day">30</span>
+                            <span class="recent__data-month">Sep.</span>
+                        </div>
+                        <div class="recent__item-wrp">
+                            <h3 class="recent__item-title">Lorem ipsum dolor sit
+                                amet</h3>
+                            <p class="recent__item-subtitle">Claritas est etiam processus dynamicus, qui sequitur
+                                mutationem
+                                consuetudium.</p>
+                            <a href="#!" class="page-link">Read More</a>
+                        </div>
+                    </article>
+                    <article class="recent__item">
+                        <img src="img/recent-right-min.png" alt="recent post" class="recent__img">
+                        <div class="recent__data">
+                            <span class="recent__data-day">30</span>
+                            <span class="recent__data-month">Sep.</span>
+                        </div>
+                        <div class="recent__item-wrp">
+                            <h3 class="recent__item-title"> Last Lorem ipsum dolor sit
+                                amet</h3>
+                            <p class="recent__item-subtitle">Claritas est etiam processus dynamicus, qui sequitur
+                                mutationem
+                                consuetudium.</p>
+                            <a href="#!" class="page-link">Read More</a>
+                        </div>
+                    </article>
                 </div>
             </div>
             <div class="recent__arrows-wrp ">
@@ -650,7 +609,7 @@
     </main>
 
     <footer>
-        <section id="contacts" class="footer">
+        <section id="contacts" class="footer" data-elem='elem-target'>
             <div class="footer__wrp container">
                 <div class="footer__cap footer__item">
                     <a href="#" class="footer__logo logo logo-link"><svg class="logo__icon"
@@ -730,7 +689,7 @@
             </div>
         </div>
     </footer>
-    <script src="js/main-es5.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>
