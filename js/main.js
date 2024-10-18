@@ -174,8 +174,6 @@ function toggleOpenSearch(isOpen) {
 
 const menuBurger = document.querySelector('.header__burger')
 
-let menuBurgerLines = menuBurger.querySelectorAll('.burger__line')
-
 let resizeTimeout
 
 const navBar = document.querySelector('.header__nav')
@@ -202,6 +200,7 @@ function menuBurgerInit() {
 function toggleActiveNavBar() {
     if (!document.querySelector('.header__burger--display-block')) { return }
     if (navBar.classList.contains('header__nav-active')) {
+        menuBurger.classList.remove('header__burger--active')
         let animCloseNavBar = navBar.animate([{ transform: 'translate(100%)' }], { duration: 200 })
         animCloseNavBar.addEventListener('finish', function () {
             navBar.classList.remove('header__nav-active')
@@ -209,17 +208,9 @@ function toggleActiveNavBar() {
         isOpen = false
     } else {
         navBar.classList.add('header__nav-active')
+        menuBurger.classList.add('header__burger--active')
         isOpen = true
     }
-
-    for (i = 0; i < menuBurgerLines.length; i++) {
-        if (isOpen) {
-            menuBurgerLines[i].classList.add('header__nav-close-line')
-        } else {
-            menuBurgerLines[i].classList.remove('header__nav-close-line')
-        }
-    }
-
 }
 
 //---------------burger-end-----------------------

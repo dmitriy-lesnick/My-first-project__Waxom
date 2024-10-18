@@ -46,26 +46,19 @@ body {
 
 .header {
     padding: 40px 50px 0 50px;
-    width: 100%;
     position: fixed;
-    left: 50%;
-    -webkit-transform: translate(-50%);
-    -ms-transform: translate(-50%);
-    transform: translate(-50%);
+    left: 0;
+    right: 0;
     z-index: 998;
-    -moz-transform: translate(-50%);
-    -o-transform: translate(-50%);
 }
 
 .header-wrp {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    gap: 30px;
+    align-items: center;
+    gap: 10px;
     flex-wrap: wrap;
     max-width: 1180px;
     margin: 0 auto;
-    padding-right: 70px;
 }
 
 .header_active {
@@ -73,10 +66,6 @@ body {
     background-image: url(../img/statistic-background-min.png);
     background-repeat: no-repeat;
     background-size: cover;
-}
-
-.header__search.header__search-mobile {
-    display: none;
 }
 
 .header__logo {
@@ -155,18 +144,18 @@ body {
     transition: all ease-in-out 200ms;
 }
 
-.burger__line_first {
+.burger__line:nth-child(1) {
     top: 0;
 }
 
-.burger__line_second {
+.burger__line:nth-child(2) {
     top: 50%;
     -webkit-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
 }
 
-.burger__line_third {
+.burger__line:nth-child(3) {
     bottom: 0;
 }
 
@@ -199,17 +188,17 @@ body {
     color: #c7b299;
 }
 
-.header__nav_bask {
+.header__bask {
     fill: #ffffff;
     margin: 0 25px 0 30px;
     transition: 200ms ease-in-out;
 }
 
-.header__nav_bask:hover {
+.header__bask:hover {
     fill: #c7b299;
 }
 
-.header__nav_bask:active {
+.header__bask:active {
     fill: #fff;
 }
 
@@ -1650,6 +1639,13 @@ input[class="search__input"]::-webkit-search-results-decoration {
 }
 
 @media (max-width: 1100px) {
+    .logo {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 30px;
+    }
+
     .mobile__item-btn {
         padding: 0 0 0 30px;
     }
@@ -1686,7 +1682,7 @@ input[class="search__input"]::-webkit-search-results-decoration {
 
 @media (max-width: 920px) {
     .visual-slider {
-        padding: 200px 0 0 0;
+        padding: 225px 0 0 0;
     }
 
     .visual-slider__button {
@@ -1771,10 +1767,14 @@ input[class="search__input"]::-webkit-search-results-decoration {
 
 @media (max-width: 765px) {
     .header-wrp {
-        justify-content: space-around;
+        gap: 20px;
+    }
+    .logo {
+        margin-bottom: 0;
+        margin-right: auto;
     }
     .header__logo {
-        flex-grow: 0;
+        max-width: 200px;
         margin-left: 0;
     }
     .header__nav {
@@ -1810,15 +1810,21 @@ input[class="search__input"]::-webkit-search-results-decoration {
         margin: 0;
     }
 
-    .header__search {
-        display: none;
-    }
-
     .header__burger--display-block {
         display: block;
     }
 
-    .header__nav-close-line {
+    .header__burger--active {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        -webkit-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        -o-transform: translateX(-50%);
+    }
+
+    .header__burger--active .burger__line {
         display: block;
         height: 2px;
         width: 100%;
@@ -1830,17 +1836,15 @@ input[class="search__input"]::-webkit-search-results-decoration {
         transition: all ease-in-out 200ms;
     }
 
-    .header__nav-close-line:first-child {
+    .header__burger--active .burger__line:nth-child(1) {
         -webkit-transform: translateY(-50%) rotate(45deg);
         -ms-transform: translateY(-50%) rotate(45deg);
         transform: translateY(-50%) rotate(45deg);
     }
-
-    .header__nav-close-line:nth-child(2) {
+    .header__burger--active .burger__line:nth-child(2) {
         display: none;
     }
-
-    .header__nav-close-line:last-child {
+    .header__burger--active .burger__line:nth-child(3) {
         -webkit-transform: translateY(-50%) rotate(-45deg);
         -ms-transform: translateY(-50%) rotate(-45deg);
         transform: translateY(-50%) rotate(-45deg);
@@ -1869,9 +1873,11 @@ input[class="search__input"]::-webkit-search-results-decoration {
         line-height: 2.2;
     }
 
-    .header__nav_bask {
-        margin: 0px;
+    .header__bask,
+    .search__form {
+        margin: 0;
     }
+
     .visual-slider {
         padding: 170px 0 0 0;
     }
@@ -2062,17 +2068,21 @@ input[class="search__input"]::-webkit-search-results-decoration {
 
 @media (max-width: 480px) {
     .header {
-        padding: 30px 20px 30px 20px;
+        padding: 30px;
     }
 
     .header-wrp {
         padding-right: 0px;
+        justify-content: center;
     }
 
-    .header__search.header__search-mobile {
-        display: block;
-        width: 40px;
-        height: 30px;
+    .logo {
+        margin: 0;
+    }
+
+    .header__logo {
+        width: 20%;
+        justify-content: unset;
     }
 
     .header__logo-icon {
